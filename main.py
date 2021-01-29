@@ -15,8 +15,7 @@ def mainMenu():
         print(f"{counter}) {item}")
         counter += 1
 
-
-# Buy Car
+# Select Car
 #   'makes' array = [Fill from Database]
 #   colors = ["red", "black", etc.]
 #   List Makes (from database)
@@ -25,7 +24,8 @@ def mainMenu():
 #   List Colors (based on colors array)
 #   Insert car into database
 
-def purchaseCar():
+
+def selectCar():
     makes = []
 
     for make in getAllMakes():
@@ -35,15 +35,32 @@ def purchaseCar():
     year = input("Car Year >> ")
 
     # ['Toyota', 'Honda', 'Mercedes', 'Dodge', 'BMW', 'Chevy', 'Ford', 'Tesla']
-    print(makes)  # Prints the manufacturers
-    manu = input("Pick a Manufacturer: ")
+    makesLength = len(makes)
+    for i in range(makesLength):
+        print(f"{i+1}) {makes[i]}")
 
-    print(getMakeModels(manu))  # Prints the Makes
+    # print(makes)  # Prints the manufacturers
+    manu = int(input("Pick a Manufacturer: "))
+
+    models = getMakeModels(manu)
+    counter = 0
+    for model in models:
+        counter += 1
+        modelName = model[1]
+        makeID = model[3]
+        make = makes[makeID-1]
+
+        print(f"{counter}){make} {modelName}")
+
     modelOption = int(input("Pick a Model: "))
-    model = getMakeModels(manu)[modelOption][0]
+    model = getMakeModels(manu)[modelOption-1][0]
 
-    print(colors)  # Prints color options
-    color = input("Pick a Color: ")
+    # Prints color options
+    for i in range(len(colors)):
+        print(f"{i+1}) {colors[i]}")
+
+    colorSelection = int(input("Pick a Color: "))
+    color = colors[colorSelection-1]
 
     addCars(year, color, ownerID, model)
 
@@ -63,8 +80,6 @@ else:
 
 ownerID = getUser(email)[0]
 
-customer = Owner(ownerID, firstName, lastName, email)
-
 
 # while (customer):
 
@@ -72,7 +87,7 @@ customer = Owner(ownerID, firstName, lastName, email)
 mainMenu()
 option = input("Select from Menu >> ")
 if (option == "1"):
-    purchaseCar()
+    selectCar()
 
 
 def viewCars():
