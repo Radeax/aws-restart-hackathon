@@ -212,12 +212,30 @@ def getAllMakes():
     return result
 
 
-def getMakeModels(makeID):
+def getModels(makeID):
     connection = getConnection()
     try:
         cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM Models WHERE make_id = {makeID}")
         result = cursor.fetchall()
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        raise e
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+def getModelPrice(modelID):
+    connection = getConnection()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(
+            f"SELECT car_price FROM Models WHERE model_id = {modelID}")
+        result = cursor.fetchone()[0]
         connection.commit()
     except Exception as e:
         connection.rollback()

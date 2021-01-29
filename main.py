@@ -40,20 +40,21 @@ def selectCar():
         print(f"{i+1}) {makes[i]}")
 
     # print(makes)  # Prints the manufacturers
-    manu = int(input("Pick a Manufacturer: "))
+    makeID = int(input("Pick a Manufacturer: "))
+    make = makes[makeID-1]
 
-    models = getMakeModels(manu)
+    models = getModels(makeID)
     counter = 0
     for model in models:
         counter += 1
         modelName = model[1]
-        makeID = model[3]
-        make = makes[makeID-1]
+        manuID = model[3]
+        manu = makes[manuID-1]
 
-        print(f"{counter}){make} {modelName}")
+        print(f"{counter}){manu} {modelName}")
 
-    modelOption = int(input("Pick a Model: "))
-    model = getMakeModels(manu)[modelOption-1][0]
+    modelID = int(input("Pick a Model: "))
+    model = getModels(makeID)[modelID-1][1]
 
     # Prints color options
     for i in range(len(colors)):
@@ -62,9 +63,36 @@ def selectCar():
     colorSelection = int(input("Pick a Color: "))
     color = colors[colorSelection-1]
 
-    addCars(year, color, ownerID, model)
+    price = getModelPrice(modelID)
 
-########## SCRIPT ############
+    return Car(make, model, year, color, price)
+    # addCars(year, color, ownerID, model)
+
+
+def checkout(car):
+    color = car.getColor()
+    msrp = car.getPrice()
+
+    vet = False
+
+    inp = input("Are you a war veteran or disabled? [Y/N] >> ")
+    if (inp == 'Y' or inp == 'y'):
+        vet = True
+        vetDiscount = calcVetDiscount(msrp)
+    else:
+        vetDiscount = 0
+
+    colorDiscount = colorldisc(msrp, color)
+    tax = calcTax(msrp - vetDiscount - colorDiscount)
+    total = msrp - vetDiscount - colorDiscount + tax
+
+    print(f"        Subtotal:  ${msrp}")
+    print(f"Veteran Discount: -${vetDiscount}")
+    print(f" Other Discounts: -${colorDiscount}")
+    print(f"        Est. Tax:  ${tax}")
+    print(f"     Grand Total:  ${total}")
+
+    ########## SCRIPT ############
 
 
 email = input("Please enter your email >> ")
@@ -85,9 +113,10 @@ ownerID = getUser(email)[0]
 
 
 mainMenu()
-option = input("Select from Menu >> ")
-if (option == "1"):
-    selectCar()
+select = input("Select from Menu >> ")
+if (select == "1"):
+    newCar = selectCar()
+    checkout(newCar)
 
 
 def viewCars():

@@ -1,26 +1,30 @@
-# Calculates color discount
+# Returns color discount amount
 def colorldisc(price, color):
     cost = price
     disc = 0
 
     if (color == "black"):
-        disc = cost * 0.25
+        disc = price * 0.25
 
     elif (color == "white"):
-        disc = cost - 400
+        disc = 400
 
-    cost = cost - disc
+    return disc
 
-    return cost
-
-# Calculates veteran/disabled discount
+# Returns veteran/disabled discount amount
 
 
-def disc(price, veteran):
+def calcVetDiscount(price):
+    disc = (price * 0.25) + 500
+
+    return disc
+
+# Returns tax
+
+
+def calcTax(price):
     cost = price
-    disc = 0
+    taxRate = 0.0415
+    tax = round(price * taxRate, 2)
 
-    if (veteran == True):
-        disc = (price * 0.25) + 500
-        cost = cost - disc
-    return cost
+    return tax

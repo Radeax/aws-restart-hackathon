@@ -1,9 +1,10 @@
 class Car:
-    def __init__(self, make=None, model=None, year=None, color=None):
+    def __init__(self, make=None, model=None, year=None, color=None, price=None):
         self.make = make
         self.model = model
         self.year = year
         self.color = color
+        self.price = price
 
     def setMake(self, make):
         self.make = make
@@ -28,6 +29,12 @@ class Car:
 
     def getColor(self):
         return self.color
+
+    def setPrice(self, price):
+        self.price = price
+
+    def getPrice(self):
+        return self.price
 
 
 # Class Car:
