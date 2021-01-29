@@ -1,7 +1,7 @@
 # Returns color discount amount
 def colorldisc(price, color):
     cost = price
-    disc = 0
+    disc = 0    # discount is 0 by default
 
     if (color == "black"):
         disc = price * 0.25     # discount is 25% off

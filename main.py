@@ -23,21 +23,23 @@ def mainMenu():
 #   'makes' array = [Fill from Database]
 #   colors = ["red", "black", etc.]
 #   List Makes (from database)
-#   Ask for Year (simply assign to variable)
+#   List Years (from array)
 #   List Models based on Make
 #   List Colors (based on colors array)
-#   Insert car into database
+#   Return car object
 
 
 def selectCar():
     makes = []
 
+    # Fill makes array with values from database's Makes table
     for make in getAllMakes():
         makes.append(make[1])
 
     colors = ["white", "black", "silver", "red", "green", "blue", "yellow"]
 
-    # ['Toyota', 'Honda', 'Mercedes', 'Dodge', 'BMW', 'Chevy', 'Ford', 'Tesla']
+    # makes = ['Toyota', 'Honda', 'Mercedes', 'Dodge', 'BMW', 'Chevy', 'Ford', 'Tesla']
+    # Select a manufacturer
     makesLength = len(makes)
     for i in range(makesLength):
         print(f"{i+1}) {makes[i]}")
@@ -48,6 +50,7 @@ def selectCar():
 
     os.system('cls')
 
+    # Select a Year
     years = [2019, 2020, 2021]
     yearsLength = len(years)
     for i in range(yearsLength):
@@ -60,6 +63,7 @@ def selectCar():
 
     os.system('cls')
 
+    # Select a Model
     models = getModels(makeID)
     counter = 0
     for model in models:
@@ -71,12 +75,12 @@ def selectCar():
         print(f"{counter}){manu} {modelName}")
 
     print("")
-    modelID = int(input("Select a Model [#]  >>"))
+    modelID = int(input("Select a Model [#]  >> "))
     model = getModels(makeID)[modelID-1][1]
 
     os.system('cls')
 
-    # Prints color options
+    # Select a Color
     print("We have specials today for black and white!")
     print("")
     for i in range(len(colors)):
@@ -86,7 +90,7 @@ def selectCar():
     colorSelection = int(input("Select a Color [#] >> "))
     color = colors[colorSelection-1]
 
-    price = getModelPrice(modelID)
+    price = getModelPrice(modelID)  # Grabs msrp of model
 
     os.system('cls')
 
@@ -94,6 +98,7 @@ def selectCar():
 
 
 def checkout(car):
+    # Use Class Car methods to retrieve attributes
     color = car.getColor()
     msrp = car.getPrice()
     year = car.getYear()
@@ -103,6 +108,7 @@ def checkout(car):
 
     vet = False
 
+    # Apply war veteran discount if veteran
     inp = input("Are you a war veteran or disabled? [Y/N] >> ")
     if (inp == 'Y' or inp == 'y'):
         vet = True
@@ -111,10 +117,12 @@ def checkout(car):
         vetDiscount = 0
     os.system('cls')
 
+    # Apply discount if car is white/black
     colorDiscount = colorldisc(msrp, color)
-    tax = calcTax(msrp - vetDiscount - colorDiscount)
+    tax = calcTax(msrp - vetDiscount - colorDiscount)  # Calculate tax
     total = msrp - vetDiscount - colorDiscount + tax
 
+    # Display checkout amount
     print(
         f"You are about to buy a {year} {color.capitalize()} {make} {model}" + "\n")
     print(f"        Subtotal:  ${msrp:,}")

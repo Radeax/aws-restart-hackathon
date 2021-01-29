@@ -8,10 +8,10 @@ def checkEmail(email):
     try:
         # executes sql query
         cursor.execute(f"SELECT * FROM Owners WHERE email='{email}'")
-        result = cursor.fetchall()  # retrieve all rows. (fetchone to retrieve a single row)
+        result = cursor.fetchall()  # retrieve all rows. (fetchone() to retrieve a single row)
         connection.commit()         # saves changes to database
     except Exception as e:      # runs if there's an exception
-        connection.rollback()   # discards changes.
+        connection.rollback()   # discards changes
         raise e                 # throw the error
     finally:    # runs after try if no exceptions
         connection.close()
