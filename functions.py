@@ -137,13 +137,6 @@ def printAll():
     for Owners in selectAll():
         print(Owners)
 
-# addPerson('John', 'Wick')
-# removePerson(2)
-# updateFirstName(3, "HI")
-
-
-# print(printAll())
-# print(selectAll())
 
 # Cars
 def getOwnedCars(ownerID):
@@ -337,8 +330,3 @@ def getModelId(modelName):
 def printAll():
     for Cars in selectAll():
         print(Cars)
-
-
-# addOwners("Jo", "Po", "jo@mail.com")
-# print(checkEmail("jo@mail.com"))
-# print(getUser("jo@mail.com")[3])
