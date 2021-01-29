@@ -10,7 +10,7 @@ import os
 
 
 def mainMenu():
-    menu = ["Buy Car", "View Purchased Cars", "View Profile", "Exit"]
+    menu = ["Buy Car", "View Purchased Cars"]
     print("Main Menu:")
     counter = 1
     for item in menu:
