@@ -146,8 +146,8 @@ def viewCars():
 
     select = input("Press Enter to Continue >> ")
 
-    ########## SCRIPT ############
 
+############### SCRIPT #################
 
 email = input("Please enter your email >> ")
 
@@ -162,22 +162,26 @@ else:
 
 ownerID = getUser(email)[0]
 
-
-# while (customer):
-
+os.system('cls')
 
 while (ownerID):
     mainMenu()
+    print("")
     select = input("Select from Menu >> ")
     if (select == "1"):
         os.system('cls')
         newCar = selectCar()
         checkout(newCar)
-    if (select == "2"):
+    elif (select == "2"):
         os.system('cls')
         viewCars()
-    if (select == "3"):
+    elif (select == "3"):
         os.system('cls')
         print("Have a great day!")
         exit()
+    else:
+        os.system('cls')
+        print("Invalid selection. Try again")
+        time.sleep(2)
+        os.system('cls')
     os.system('cls')
