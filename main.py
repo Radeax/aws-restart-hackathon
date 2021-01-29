@@ -10,7 +10,7 @@ import os
 
 
 def mainMenu():
-    menu = ["Buy Car", "View Purchased Cars"]
+    menu = ["Buy Car", "View Purchased Cars", "Exit"]
     print("Main Menu:")
     counter = 1
     for item in menu:
@@ -33,19 +33,28 @@ def selectCar():
     for make in getAllMakes():
         makes.append(make[1])
 
-    colors = ["white", "black", "red"]
+    colors = ["white", "black", "silver", "red", "green", "blue", "yellow"]
 
     # ['Toyota', 'Honda', 'Mercedes', 'Dodge', 'BMW', 'Chevy', 'Ford', 'Tesla']
     makesLength = len(makes)
     for i in range(makesLength):
         print(f"{i+1}) {makes[i]}")
 
+    print("")
     makeID = int(input("Select a Manufacturer [#] >> "))
     make = makes[makeID-1]
 
     os.system('cls')
 
-    year = input("Car Year >> ")
+    years = [2019, 2020, 2021]
+    yearsLength = len(years)
+    for i in range(yearsLength):
+        print(f"{i+1}) {years[i]}")
+
+    print("")
+    inp = int(input("Select a Year [#] >> "))
+
+    year = years[inp-1]
 
     os.system('cls')
 
@@ -59,7 +68,8 @@ def selectCar():
 
         print(f"{counter}){manu} {modelName}")
 
-    modelID = int(input("Pick a Model: "))
+    print("")
+    modelID = int(input("Select a Model [#]  >>"))
     model = getModels(makeID)[modelID-1][1]
 
     os.system('cls')
@@ -68,7 +78,8 @@ def selectCar():
     for i in range(len(colors)):
         print(f"{i+1}) {colors[i]}")
 
-    colorSelection = int(input("Pick a Color: "))
+    print("")
+    colorSelection = int(input("Select a Color [#] >> "))
     color = colors[colorSelection-1]
 
     price = getModelPrice(modelID)
@@ -94,23 +105,27 @@ def checkout(car):
         vetDiscount = calcVetDiscount(msrp)
     else:
         vetDiscount = 0
+    os.system('cls')
 
     colorDiscount = colorldisc(msrp, color)
     tax = calcTax(msrp - vetDiscount - colorDiscount)
     total = msrp - vetDiscount - colorDiscount + tax
 
-    print(f"Buying a {year} {color} {make} {model}" + "\n")
-
+    print(
+        f"You are about to buy a {year} {color.capitalize()} {make} {model}" + "\n")
     print(f"        Subtotal:  ${msrp}")
     print(f"Veteran Discount: -${vetDiscount}")
     print(f" Other Discounts: -${colorDiscount}")
     print(f"        Est. Tax:  ${tax}")
     print(f"     Grand Total:  ${total}")
-
+    print("")
     confirm = input("Confirm Purchase? [Y/N] >> ")
+    os.system('cls')
     if (confirm == 'Y' or confirm == 'y'):
         addCars(year, color, ownerID, modelID)
         print("Enjoy your new car!")
+    else:
+        print("Returning to Main Menu...")
 
     time.sleep(2)
 
@@ -128,6 +143,8 @@ def viewCars():
         make = getMakeName(makeID)
 
         print(f" - {year} {make} {model}, {color}")
+
+    select = input("Press Enter to Continue >> ")
 
     ########## SCRIPT ############
 
@@ -149,10 +166,18 @@ ownerID = getUser(email)[0]
 # while (customer):
 
 
-mainMenu()
-select = input("Select from Menu >> ")
-if (select == "1"):
-    newCar = selectCar()
-    checkout(newCar)
-if (select == "2"):
-    viewCars()
+while (ownerID):
+    mainMenu()
+    select = input("Select from Menu >> ")
+    if (select == "1"):
+        os.system('cls')
+        newCar = selectCar()
+        checkout(newCar)
+    if (select == "2"):
+        os.system('cls')
+        viewCars()
+    if (select == "3"):
+        os.system('cls')
+        print("Have a great day!")
+        exit()
+    os.system('cls')
