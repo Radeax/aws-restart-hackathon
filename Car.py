@@ -1,40 +1,40 @@
 class Car:
     def __init__(self, make=None, model=None, year=None, color=None, price=None):
-        self.make = make
-        self.model = model
-        self.year = year
-        self.color = color
-        self.price = price
+        self.__make = make  # __ to make variable private. Cannot access directly
+        self.__model = model
+        self.__year = year
+        self.__color = color
+        self.__price = price
 
     def setMake(self, make):
-        self.make = make
+        self.__make = make
 
     def getMake(self):
-        return self.make
+        return self.__make
 
     def setModel(self, model):
-        self.model = model
+        self.__model = model
 
     def getModel(self):
-        return self.model
+        return self.__model
 
     def setYear(self, year):
-        self.year = year
+        self.__year = year
 
     def getYear(self):
-        return self.year
+        return self.__year
 
     def setColor(self, color):
-        self.color = color
+        self.__color = color
 
     def getColor(self):
-        return self.color
+        return self.__color
 
     def setPrice(self, price):
-        self.price = price
+        self.__price = price
 
     def getPrice(self):
-        return self.price
+        return self.__price
 
 
 # Class Car:
