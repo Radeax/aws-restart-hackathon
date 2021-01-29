@@ -146,6 +146,21 @@ def printAll():
 # print(selectAll())
 
 # Cars
+def getOwnedCars(ownerID):
+    connection = getConnection()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(f"SELECT * FROM Cars WHERE owner_id = {ownerID}")
+        result = cursor.fetchall()
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        raise e
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
 
 
 def addCars(year, color, ownerID, modelID):
@@ -212,6 +227,42 @@ def getAllMakes():
     return result
 
 
+def getMakeId(modelID):
+    connection = getConnection()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(
+            f"SELECT make_id FROM Models WHERE model_id = {modelID}")
+        result = cursor.fetchone()[0]
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        raise e
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+def getMakeName(makeID):
+    connection = getConnection()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(
+            f"SELECT manufacturer FROM Makes WHERE make_id = {makeID}")
+        result = cursor.fetchone()[0]
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        raise e
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
 def getModels(makeID):
     connection = getConnection()
     try:
@@ -235,6 +286,42 @@ def getModelPrice(modelID):
         cursor = connection.cursor()
         cursor.execute(
             f"SELECT car_price FROM Models WHERE model_id = {modelID}")
+        result = cursor.fetchone()[0]
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        raise e
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+def getModelName(modelID):
+    connection = getConnection()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(
+            f"SELECT model_name FROM Models WHERE model_id = {modelID}")
+        result = cursor.fetchone()[0]
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        raise e
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result
+
+
+def getModelId(modelName):
+    connection = getConnection()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(
+            f"SELECT model_id FROM Models WHERE model_name = '{modelName}'")
         result = cursor.fetchone()[0]
         connection.commit()
     except Exception as e:
