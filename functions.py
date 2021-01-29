@@ -4,25 +4,8 @@ from connection import getConnection
 
 def checkEmail(email):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
-        cursor.execute(f"SELECT * FROM Owners WHERE email='{email}'")
-        result = cursor.fetchall()
-        connection.commit()
-    except Exception as e:
-        connection.rollback()
-        raise e
-    finally:
-        connection.close()
-        cursor.close()
-
-    return result
-
-
-def checkEmail(email):
-    connection = getConnection()
-    try:
-        cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM Owners WHERE email='{email}'")
         result = cursor.fetchall()
         connection.commit()
@@ -41,8 +24,8 @@ def checkEmail(email):
 
 def getFirstName(ownerID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"SELECT firstName FROM Owners WHERE owner_id='{ownerID}'")
         result = cursor.fetchall()
@@ -59,8 +42,8 @@ def getFirstName(ownerID):
 
 def getLastName(ownerID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"SELECT lastName FROM Owners WHERE owner_id='{ownerID}'")
         result = cursor.fetchall()
@@ -77,8 +60,8 @@ def getLastName(ownerID):
 
 def getUser(email):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM Owners WHERE email='{email}'")
         result = cursor.fetchall()
         connection.commit()
@@ -94,8 +77,8 @@ def getUser(email):
 
 def addOwners(fname, lname, email):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"INSERT INTO Owners(firstName, lastName, email) VALUES ('{fname}', '{lname}', '{email}')")
         connection.commit()
@@ -109,8 +92,8 @@ def addOwners(fname, lname, email):
 
 def removeOwners(id):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"DELETE FROM Owners WHERE Owners_id={id}")
         connection.commit()
@@ -124,8 +107,8 @@ def removeOwners(id):
 
 def updateFirstName(id, fname):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"UPDATE Owners SET fname = '{fname}' WHERE person_id={id}")
         connection.commit()
@@ -139,8 +122,8 @@ def updateFirstName(id, fname):
 
 def updateLastName(id, lname):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"UPDATE Owners SET lname = '{lname}' WHERE person_id={id}")
         connection.commit()
@@ -154,8 +137,8 @@ def updateLastName(id, lname):
 
 def selectAll():
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM Owners")
         result = cursor.fetchall()
         connection.commit()
@@ -177,8 +160,8 @@ def printAll():
 # Cars
 def getOwnedCars(ownerID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM Cars WHERE owner_id = {ownerID}")
         result = cursor.fetchall()
         connection.commit()
@@ -194,8 +177,8 @@ def getOwnedCars(ownerID):
 
 def addCars(year, color, ownerID, modelID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"INSERT INTO Cars (car_year, car_color, owner_id, model_id) VALUES ('{year}', '{color}', '{ownerID}', '{modelID}')")
         connection.commit()
@@ -209,8 +192,8 @@ def addCars(year, color, ownerID, modelID):
 
 def removeCars(id):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"DELETE FROM Cars WHERE car_id={id}")
         connection.commit()
@@ -224,8 +207,8 @@ def removeCars(id):
 
 def selectAll():
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM Cars")
         result = cursor.fetchall()
         connection.commit()
@@ -241,8 +224,8 @@ def selectAll():
 
 def getAllMakes():
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM Makes")
         result = cursor.fetchall()
         connection.commit()
@@ -258,8 +241,8 @@ def getAllMakes():
 
 def getMakeId(modelID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"SELECT make_id FROM Models WHERE model_id = {modelID}")
         result = cursor.fetchone()[0]
@@ -276,8 +259,8 @@ def getMakeId(modelID):
 
 def getMakeName(makeID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"SELECT manufacturer FROM Makes WHERE make_id = {makeID}")
         result = cursor.fetchone()[0]
@@ -294,8 +277,8 @@ def getMakeName(makeID):
 
 def getModels(makeID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(f"SELECT * FROM Models WHERE make_id = {makeID}")
         result = cursor.fetchall()
         connection.commit()
@@ -311,8 +294,8 @@ def getModels(makeID):
 
 def getModelPrice(modelID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"SELECT car_price FROM Models WHERE model_id = {modelID}")
         result = cursor.fetchone()[0]
@@ -329,8 +312,8 @@ def getModelPrice(modelID):
 
 def getModelName(modelID):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"SELECT model_name FROM Models WHERE model_id = {modelID}")
         result = cursor.fetchone()[0]
@@ -347,8 +330,8 @@ def getModelName(modelID):
 
 def getModelId(modelName):
     connection = getConnection()
+    cursor = connection.cursor()
     try:
-        cursor = connection.cursor()
         cursor.execute(
             f"SELECT model_id FROM Models WHERE model_name = '{modelName}'")
         result = cursor.fetchone()[0]
