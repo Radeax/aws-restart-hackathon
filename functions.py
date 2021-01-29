@@ -39,6 +39,42 @@ def checkEmail(email):
         return False
 
 
+def getFirstName(ownerID):
+    connection = getConnection()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(
+            f"SELECT firstName FROM Owners WHERE owner_id='{ownerID}'")
+        result = cursor.fetchall()
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        raise e
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result[0]
+
+
+def getLastName(ownerID):
+    connection = getConnection()
+    try:
+        cursor = connection.cursor()
+        cursor.execute(
+            f"SELECT lastName FROM Owners WHERE owner_id='{ownerID}'")
+        result = cursor.fetchall()
+        connection.commit()
+    except Exception as e:
+        connection.rollback()
+        raise e
+    finally:
+        connection.close()
+        cursor.close()
+
+    return result[0]
+
+
 def getUser(email):
     connection = getConnection()
     try:

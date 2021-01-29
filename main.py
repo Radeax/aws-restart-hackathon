@@ -11,6 +11,8 @@ import os
 
 def mainMenu():
     menu = ["Buy Car", "View Purchased Cars", "Exit"]
+    print(f"Welcome, {firstName} {lastName}!")
+    print("")
     print("Main Menu:")
     counter = 1
     for item in menu:
@@ -161,6 +163,8 @@ else:
     lastName = getUser(email)[2]
 
 ownerID = getUser(email)[0]
+firstName = getFirstName(ownerID)[0]
+lastName = getLastName(ownerID)[0]
 
 os.system('cls')
 
