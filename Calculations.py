@@ -4,10 +4,10 @@ def colorldisc(price, color):
     disc = 0
 
     if (color == "black"):
-        disc = price * 0.25
+        disc = price * 0.25     # discount is 25% off
 
     elif (color == "white"):
-        disc = 400
+        disc = 400              # discount is $400 off
 
     return disc
 
@@ -15,7 +15,7 @@ def colorldisc(price, color):
 
 
 def calcVetDiscount(price):
-    disc = (price * 0.25) + 500
+    disc = (price * 0.25) + 500  # discount is $25% off + $500 off
 
     return disc
 
@@ -24,7 +24,7 @@ def calcVetDiscount(price):
 
 def calcTax(price):
     cost = price
-    taxRate = 0.0415
+    taxRate = 0.0415    # Virginia vehicle sales tax - 4.15%
     tax = round(price * taxRate, 2)
 
     return tax
