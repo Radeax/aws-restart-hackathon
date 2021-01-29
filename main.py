@@ -77,8 +77,10 @@ def selectCar():
     os.system('cls')
 
     # Prints color options
+    print("We have specials today for black and white!")
+    print("")
     for i in range(len(colors)):
-        print(f"{i+1}) {colors[i]}")
+        print(f"{i+1}) {colors[i].capitalize()}")
 
     print("")
     colorSelection = int(input("Select a Color [#] >> "))
@@ -115,11 +117,11 @@ def checkout(car):
 
     print(
         f"You are about to buy a {year} {color.capitalize()} {make} {model}" + "\n")
-    print(f"        Subtotal:  ${msrp}")
-    print(f"Veteran Discount: -${vetDiscount}")
-    print(f" Other Discounts: -${colorDiscount}")
+    print(f"        Subtotal:  ${msrp:,}")
+    print(f"Veteran Discount: -${vetDiscount:,}")
+    print(f" Other Discounts: -${colorDiscount:,}")
     print(f"        Est. Tax:  ${tax}")
-    print(f"     Grand Total:  ${total}")
+    print(f"     Grand Total:  ${total:,}")
     print("")
     confirm = input("Confirm Purchase? [Y/N] >> ")
     os.system('cls')
@@ -150,8 +152,9 @@ def viewCars():
 
 
 ############### SCRIPT #################
-
-email = input("Please enter your email >> ")
+print("Welcome to AWSome Dealership!")
+print("")
+email = input("Please enter your email to login >> ")
 
 # Create user if not in database
 if (checkEmail(email) == False):
