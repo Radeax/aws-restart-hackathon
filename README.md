@@ -8,3 +8,9 @@ __Requirements__
 -	Organize your program by separating functionalities in files
 -	You need to buy 5 cars.
 -	Make data persist in a database
+
+### My Scripts
+main.py  
+functions.py  
+  
+As the project lead, I planned the structure and guided my team members on how to implement their features
